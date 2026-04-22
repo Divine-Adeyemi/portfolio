@@ -17,7 +17,7 @@ export const AboutSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12 mb-10">
                     <div className="lg:col-span-12">
                         <FadeUp>
-                            <h3 className="text-3xl md:text-3xl lg:text-3xl font-display font-light text-primary leading-[1.1] tracking-tighter">
+                            <h3 className="text-xl md:text-3xl lg:text-3xl font-display font-light text-primary leading-tight tracking-tighter">
                                 I believe in a user centered design approach, ensuring that every project I work on is tailored to meet the specific needs of its users.
                             </h3>
                         </FadeUp>
@@ -28,7 +28,7 @@ export const AboutSection = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-12">
                     <div className="lg:col-span-3 flex flex-col items-start gap-2 mb-2">
                         <Star />
-                        <h2 className="text-[20] tracking-tight text-secondary uppercase font-medium">
+                        <h2 className="text-[20px] tracking-tight text-secondary uppercase font-medium">
                             This is me.
                         </h2>
                     </div>

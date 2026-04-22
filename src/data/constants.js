@@ -57,7 +57,7 @@ export const STACK = [
 export const CAREER_STATS = [
   { value: "1+", label: "Year of Experience" },
   { value: "5+", label: "Projects" },
-  { value: "over 5K+", label: "Hours" },
+  { value: "5K+", label: "Hours" },
 ];
 
 // Featured projects
