@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@700,600,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+@theme {
+  --font-display: "Clash Display", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --color-void: #050505;
+  --color-brand: #22c55e;
+}
+
+:root {
+  background-color: var(--color-void);
+  color: white;
+  font-family: var(--font-body);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: auto !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
+
+@theme {
+  --font-display: "Clash Display", sans-serif;
+  --font-body: "Inter", sans-serif;
+  
+  --color-void: #050505;
+  --color-brand: #22c55e;
+  
+  --color-primary: #e2e2e2;
+  --color-secondary: #a1a1aa;
+  --color-tertiary: #52525b;
+}
+
+:root {
+  background-color: var(--color-void);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+}
