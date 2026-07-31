@@ -21,16 +21,17 @@ export const StackSection = () => {
                 gsap.fromTo(items, 
                     { 
                         opacity: 0, 
-                        y: 30,
+                        y: 40,
                         scale: 0.9 
                     },
                     {
                         opacity: 1,
-                        y: 1,
+                        y: 0,
                         scale: 1,
-                        duration: 0.05,
-                        stagger: 0.5, 
-                        ease: "back.out(1.5)",
+                        duration: 0.8,
+                        stagger: { amount: 0.4 },
+                        ease: "expo.out",
+                        force3D: true,
                         scrollTrigger: {
                             trigger: row,
                             start: "top 85%",
@@ -43,9 +44,9 @@ export const StackSection = () => {
 
             // Fade in the header with spinner when section enters view
             gsap.fromTo(".stack-main-header",
-                { opacity: 0, x: -20 },
+                { opacity: 0, x: -30 },
                 {
-                    opacity: 1, x: 0, duration: 0.03, ease: "power3.out",
+                    opacity: 1, x: 0, duration: 0.8, ease: "expo.out", force3D: true,
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 80%",
@@ -74,21 +75,21 @@ export const StackSection = () => {
         <section 
             ref={sectionRef} 
             id="stack" 
-            className="relative py-24 md:py-48 z-10 overflow-hidden"
+            className="relative py-24 md:py-32 z-10 overflow-hidden"
         >
             <div className="max-w-7xl mx-auto px-8">
                 
                 {/* Header with spinner and title */}
-                <div className="stack-main-header opacity-0 flex items-center gap-4 mb-10">
-                    <StylishSpinner className="text-brand w-6 h-6" />
-                    <h2 className="text-2xl tracking-[0.5em] text-secondary uppercase font-medium">
+                <div className="stack-main-header opacity-0 flex items-center gap-6 mb-16 lg:mb-24">
+                    <StylishSpinner className="text-brand w-8 h-8 flex-shrink-0" />
+                    <h2 className="text-2xl md:text-3xl tracking-[0.4em] text-secondary uppercase font-medium mt-1">
                         My Stack
                     </h2>
                 </div>
 
-                <div className="flex flex-col gap-32">
+                <div className="flex flex-col gap-16 md:gap-24">
                     {STACK.map((group, groupIdx) => (
-                        <div key={groupIdx} className="stack-row grid grid-cols-1 lg:grid-cols-12 items-start">
+                        <div key={groupIdx} className="stack-row grid grid-cols-1 lg:grid-cols-12 items-start gap-8 lg:gap-0">
                             
                             {/* Category title */}
                             <div className="lg:col-span-3 mb-10 lg:mb-0">

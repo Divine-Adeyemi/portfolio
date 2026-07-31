@@ -31,20 +31,24 @@ export const MY_EXPERIENCE = [
 // Skills organized by type
 export const STACK = [
   {
-    category: "Frameworks",
+    category: "Frameworks & Languages",
     items: [
       { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
       { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
       { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
       { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+      { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg" },
       { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
       { name: "Bootstrap", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" },
       { name: "Sass", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" },
     ],
   },
   {
-    category: "Tools",
+    category: "Tools & Libraries",
     items: [
+      { name: "Zustand", icon: "https://raw.githubusercontent.com/pmndrs/zustand/main/docs/bear.jpg" },
+      { name: "TanStack Query", icon: "https://cdn.simpleicons.org/reactquery/FF4154" },
       { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
       { name: "GitHub", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
       { name: "GSAP", icon: "https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg" }, 
@@ -96,6 +100,13 @@ export const SELECTED_PROJECTS = [
     stack: ["HTML", "JavaScript", "Tailwind CSS"],
     link: "https://xo-one-zeta.vercel.app/",
     image: "src/assets/Project_images/xo.webp"
+  },
+  {
+    id: "06.",
+    title: "Weather With Me",
+    stack: ["TypeScript", "React"],
+    link: "https://weather-with-me-ruby.vercel.app/",
+    image: "src/assets/Project_images/weather-with.webp"
   }
 ];
 
@@ -103,5 +114,5 @@ export const SELECTED_PROJECTS = [
 export const LINKS = {
   github: "https://github.com/Divine-Adeyemi",
   linkedin: "https://www.linkedin.com/in/divine-adeyemi-6b92952b7",
-  email: "mailto:divineadevemi2006@gmail.com",
+  email: "mailto:divineadeyemi2006@gmail.com",
 };

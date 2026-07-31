@@ -4,21 +4,24 @@ import { StylishSpinner } from "../components/ui/StylishSpinner";
 
 export const ProjectsSection = () => {
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const isSomethingHoveredGlobal = hoveredIndex !== null;
 
     return (
-        <section id="projects" className="relative min-h-screen py-32 z-10">
+        <section id="projects" className="relative py-24 md:py-32 min-h-screen z-10">
             <div className="max-w-7xl mx-auto px-8 w-full">
                 
                 {/* Header with spinner and title */}
-                <h2 className="text-sm tracking-widest text-gray-500 uppercase mb-16 flex items-center gap-4">
-                    <StylishSpinner className="text-brand w-6 h-6" />
-                    Selected Projects
-                </h2>
+                <div className="flex items-center gap-6 mb-16 lg:mb-24">
+                    <StylishSpinner className="text-brand w-8 h-8 flex-shrink-0" />
+                    <h2 className="text-2xl md:text-3xl tracking-[0.4em] text-secondary uppercase font-medium mt-1">
+                        Selected Projects
+                    </h2>
+                </div>
                 
                 <div className="flex flex-col lg:flex-row relative">
                     
                     {/* Left: Project list */}
-                    <div className="w-full lg:w-1/2 flex flex-col z-20 pb-32">
+                    <div className="w-full lg:w-[50%] flex flex-col z-20 pb-32 lg:pr-12">
                         {SELECTED_PROJECTS.map((project, index) => {
                             const isHovered = hoveredIndex === index;
                             const isSomethingHovered = hoveredIndex !== null;
@@ -85,7 +88,7 @@ export const ProjectsSection = () => {
 
                     {/* Right: Image preview window */}
                     <div className="hidden lg:block absolute right-0 top-0 w-[45%] h-full pointer-events-none z-10">
-                        <div className="sticky top-32 w-full aspect-[4/3] overflow-hidden rounded-xl bg-white/[0.02] border border-white/5">
+                        <div className={`sticky top-32 w-full aspect-[4/3] overflow-hidden rounded-xl bg-white/[0.02] border border-white/5 transition-opacity duration-500 ${isSomethingHoveredGlobal ? "opacity-100" : "opacity-0"}`}>
                             
                             {SELECTED_PROJECTS.map((project, index) => (
                                 <img

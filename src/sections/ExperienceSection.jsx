@@ -41,7 +41,7 @@ const EXPERIENCE = [
         company: "Frontend Mentor",
         role: "Frontend Challenger",
         date: "Early 2025 - Present",
-        description: "’ve completed several Frontend Mentor challenges to sharpen my skills in HTML, CSS, JavaScript, and ReactJS, focusing on responsive design and clean code."
+        description: "I've completed several Frontend Mentor challenges to sharpen my skills in HTML, CSS, JavaScript, and ReactJS, focusing on responsive design and clean code."
     },
    
 ];
@@ -58,14 +58,15 @@ export const ExperienceSection = () => {
                 const items = row.querySelectorAll(".exp-animate-item");
 
                 gsap.fromTo(items, 
-                    { opacity: 0, y: 30, scale: 0.98 },
+                    { opacity: 0, y: 40, scale: 0.98 },
                     {
                         opacity: 1, 
                         y: 0, 
                         scale: 1,
-                        duration: 0.4,
-                        stagger: 0.08,
-                        ease: "back.out(1.5)",
+                        duration: 1.0,
+                        stagger: 0.15,
+                        ease: "expo.out",
+                        force3D: true,
                         scrollTrigger: {
                             trigger: row,
                             start: "top 85%",
@@ -78,9 +79,9 @@ export const ExperienceSection = () => {
 
             // Fade in section header
             gsap.fromTo(".exp-main-header",
-                { opacity: 0, x: -20 },
+                { opacity: 0, x: -30 },
                 {
-                    opacity: 1, x: 0, duration: 0.5, ease: "power3.out",
+                    opacity: 1, x: 0, duration: 1.0, ease: "expo.out", force3D: true,
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top 80%",
@@ -114,9 +115,9 @@ export const ExperienceSection = () => {
             <div className="max-w-7xl mx-auto px-8">
                 
                 {/* Section Title */}
-                <div className="exp-main-header opacity-0 flex items-center gap-4 mb-10">
-                    <StylishSpinner className="text-brand w-6 h-6" />
-                    <h2 className="text-2xl tracking-[0.5em] text-secondary uppercase font-medium">
+                <div className="exp-main-header opacity-0 flex items-center gap-6 mb-16 lg:mb-24">
+                    <StylishSpinner className="text-brand w-8 h-8 flex-shrink-0" />
+                    <h2 className="text-2xl md:text-3xl tracking-[0.4em] text-secondary uppercase font-medium mt-1">
                         Practical Experience
                     </h2>
                 </div>

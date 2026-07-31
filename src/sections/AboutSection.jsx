@@ -1,16 +1,16 @@
 import React from "react";
 import { FadeUp } from "../components/animations/FadeUp";
 
-export const AboutSection = () => {
-    // Spinning star icon
-    const Star = () => (
-        <span className="inline-block animate-[spin_4s_linear_infinite] text-brand text-xl font-bold">
-            *
-        </span>
-    );
+// Spinning star icon
+const Star = () => (
+    <span className="inline-block animate-[spin_4s_linear_infinite] text-brand text-xl font-bold">
+        *
+    </span>
+);
 
+export const AboutSection = () => {
     return (
-        <section id="about-me" className="relative py-24 md:py-30 z-10">
+        <section id="about-me" className="relative py-24 md:py-32 z-10">
             <div className="max-w-7xl mx-auto px-8 w-full">
                 
                 {/* Main philosophy statement */}

@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 import { SuckingTextEffect } from "../components/animations/SuckingTextEffect";
 import { CAREER_STATS } from "../data/constants";
 import { FadeUp } from "../components/animations/FadeUp";
@@ -8,12 +8,12 @@ import { DownloadButton } from "../components/ui/DownloadButton";
 export const HeroSection = () => {
     return (
         <section id="home" className="relative min-h-screen flex flex-col justify-center z-10">
-        
+
             <div className="max-w-7xl mx-auto px-8 w-full flex flex-col lg:flex-row justify-between items-start lg:items-end gap-16">
 
                 {/* Left content area */}
                 <div className="flex-1 w-full relative z-20">
-                    
+
                     {/* Text animation for heading */}
                     <SuckingTextEffect>
                      <h1 className="font-display text-3xl md:text-4xl lg:text-[4rem] font-bold uppercase leading-[0.8] tracking-tighter m">
@@ -31,7 +31,7 @@ export const HeroSection = () => {
                         {/* Two action buttons */}
                         <div className="flex flex-wrap items-center gap-6 mt-10">
                             {/* Contact button */}
-                            <a 
+                            <a
                                 href="mailto:divineadevemi2006@gmail.com"
                                 className="inline-flex items-center justify-center bg-brand text-black px-8 py-4 font-bold tracking-widest uppercase hover:bg-white transition-colors duration-300"
                             >
@@ -58,7 +58,7 @@ export const HeroSection = () => {
                         </div>
                     ))}
                 </div>
-             
+
             </div>
         </section>
     );
