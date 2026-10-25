@@ -5,12 +5,17 @@ const WORD = "DIVINE";
 const BRAND = "#22c55e";
 
 const easeIn = gsap.parseEase("expo.out");
-const easeOut = gsap.parseEase("power3.in");
+const easeOut = gsap.parseEase("sine.inOut");
 const clamp01 = (v) => Math.max(0, Math.min(1, v));
 
-export const IntroLoader = ({ onComplete }) => {
+export const IntroLoader = ({ onReveal, onComplete }) => {
   const loaderRef = useRef(null);
   const canvasRef = useRef(null);
+  // Keep the latest callbacks without restarting the timeline on re-render
+  const callbacks = useRef({ onReveal, onComplete });
+  useEffect(() => {
+    callbacks.current = { onReveal, onComplete };
+  });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -61,10 +66,11 @@ export const IntroLoader = ({ onComplete }) => {
             ty: y,
             sx: Math.random() * W,
             sy: Math.random() * H,
-            ex: x + (Math.random() - 0.5) * W * 0.8,
-            ey: y + (Math.random() - 0.5) * H * 0.8,
+            // on exit the pixels drift gently upward and sideways, like dust settling into the stars
+            ex: x + (Math.random() - 0.5) * W * 0.3,
+            ey: y - H * (0.05 + Math.random() * 0.25),
             delay: Math.random() * 0.45,
-            exitDelay: Math.random() * 0.4,
+            exitDelay: Math.random() * 0.3,
             color: Math.random() < 0.12 ? BRAND : ink,
           });
         }
@@ -77,7 +83,7 @@ export const IntroLoader = ({ onComplete }) => {
         ctx.clearRect(0, 0, W, H);
         for (const p of particles) {
           const g = easeIn(clamp01((state.gather - p.delay) / (1 - 0.45)));
-          const l = easeOut(clamp01((state.leave - p.exitDelay) / (1 - 0.4)));
+          const l = easeOut(clamp01((state.leave - p.exitDelay) / (1 - 0.3)));
           let x = p.sx + (p.tx - p.sx) * g;
           let y = p.sy + (p.ty - p.sy) * g;
           x += (p.ex - p.tx) * l;
@@ -93,17 +99,24 @@ export const IntroLoader = ({ onComplete }) => {
       draw();
 
       tl = gsap.timeline({
-        onComplete: () => onComplete && onComplete(),
+        onComplete: () => callbacks.current.onComplete?.(),
         onUpdate: draw,
       });
 
       tl.to(state, { gather: 1, duration: 2, ease: "none", delay: 0.3 })
-        .to({}, { duration: 0.6 }) // hold the finished word
-        .to(state, { leave: 1, duration: 0.9, ease: "none" })
+        .to({}, { duration: 0.5 }) // hold the finished word
+        // One continuous hand-off: the pixels drift off while the dark overlay dissolves
+        // and the page rises in underneath, all overlapping
+        .to(state, { leave: 1, duration: 1.8, ease: "none" })
         .to(
           loaderRef.current,
-          { y: "-100%", duration: 0.5, ease: "expo.inOut" },
-          "-=0.2"
+          {
+            opacity: 0,
+            duration: 1.4,
+            ease: "sine.inOut",
+            onStart: () => callbacks.current.onReveal?.(),
+          },
+          "<0.1"
         );
     };
 
@@ -113,12 +126,12 @@ export const IntroLoader = ({ onComplete }) => {
       alive = false;
       if (tl) tl.kill();
     };
-  }, [onComplete]);
+  }, []);
 
   return (
     <div
       ref={loaderRef}
-      className="fixed inset-0 z-[200] bg-void overflow-hidden"
+      className="fixed inset-0 z-[200] bg-void overflow-hidden pointer-events-none"
     >
       <canvas
         ref={canvasRef}

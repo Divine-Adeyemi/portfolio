@@ -1,5 +1,6 @@
 // src/App.jsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // 1. Layout & Architecture
 import { NavigationMenu } from "./components/layout/NavigationMenu";
@@ -20,32 +21,39 @@ import { ProjectsSection } from "./sections/ProjectsSection";
 import { ScrollProgress } from "./components/ui/ScrollProgress";
 import { CustomCursor } from "./components/ui/CustomCursor";
 export default function App() {
-  // Global state to hold the UI until the GSAP staircase finishes
-  const [isLoaded, setIsLoaded] = useState(false);
+  // The page mounts underneath the loader so it's fully ready when the curtain lifts
+  const [revealed, setRevealed] = useState(false);
+  const [loaderGone, setLoaderGone] = useState(false);
 
- 
-return (
-  <main className="bg-void text-primary">
-    {!isLoaded && <IntroLoader onComplete={() => setIsLoaded(true)} />}
+  // No scrolling behind the intro
+  useEffect(() => {
+    document.documentElement.style.overflow = loaderGone ? "" : "hidden";
+    if (loaderGone) ScrollTrigger.refresh();
+  }, [loaderGone]);
 
-    {isLoaded && (
-      <>
-        {!window.matchMedia("(pointer: coarse)").matches && <CustomCursor />}
-        <NavigationMenu />
-        <ScrollProgress /> 
-        <StarfieldBackground />
-        
-        <SmoothScroll>
-          <div className="relative z-10">
-            <HeroSection />
-            <AboutSection />
-            <StackSection />
-            <ExperienceSection />
-            <ProjectsSection />
-          </div>
-        </SmoothScroll>
-      </>
-    )}
-  </main>
-);
+  return (
+    <main className="bg-void text-primary">
+      {!loaderGone && (
+        <IntroLoader
+          onReveal={() => setRevealed(true)}
+          onComplete={() => setLoaderGone(true)}
+        />
+      )}
+
+      {!window.matchMedia("(pointer: coarse)").matches && <CustomCursor />}
+      <NavigationMenu />
+      <ScrollProgress />
+      <StarfieldBackground />
+
+      <SmoothScroll>
+        <div className="relative z-10">
+          <HeroSection ready={revealed} />
+          <AboutSection />
+          <StackSection />
+          <ExperienceSection />
+          <ProjectsSection />
+        </div>
+      </SmoothScroll>
+    </main>
+  );
 }
