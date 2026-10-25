@@ -5,7 +5,7 @@ export const DownloadButton = () => {
     <a 
       href="./Adeyemi_Divine_CV.pdf" // This looks in your public folder
       download="Adeyemi_Divine_CV.pdf"
-      className="group relative inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand text-void font-bold uppercase tracking-widest text-sm overflow-hidden transition-all duration-300 hover:bg-white"
+      className="group relative flex sm:inline-flex items-center justify-center gap-3 px-8 py-4 bg-brand text-black font-bold uppercase tracking-widest text-sm overflow-hidden transition-all duration-300 hover:bg-primary hover:text-void"
     >
       {/* Button Text */}
       <span className="relative z-10 transition-colors duration-300">

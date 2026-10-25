@@ -110,14 +110,14 @@ export const ExperienceSection = () => {
         <section 
             ref={sectionRef} 
             id="experience" 
-            className="relative py-24 md:py-32 z-10 overflow-hidden"
+            className="relative py-16 md:py-32 z-10 overflow-hidden"
         >
             <div className="max-w-7xl mx-auto px-8">
                 
                 {/* Section Title */}
-                <div className="exp-main-header opacity-0 flex items-center gap-6 mb-16 lg:mb-24">
-                    <StylishSpinner className="text-brand w-8 h-8 flex-shrink-0" />
-                    <h2 className="text-2xl md:text-3xl tracking-[0.4em] text-secondary uppercase font-medium mt-1">
+                <div className="exp-main-header opacity-0 flex items-center gap-6 mb-10 lg:mb-24">
+                    <StylishSpinner className="text-accent w-8 h-8 flex-shrink-0" />
+                    <h2 className="text-xl md:text-3xl tracking-[0.2em] md:tracking-[0.4em] text-secondary uppercase font-medium mt-1">
                         Practical Experience
                     </h2>
                 </div>
@@ -125,14 +125,14 @@ export const ExperienceSection = () => {
                 {/* Job List */}
                 <div className="flex flex-col gap-24">
                     {EXPERIENCE.map((job, idx) => (
-                        <div key={idx} className="exp-row grid grid-cols-1 lg:grid-cols-12 items-start border-t border-white/5 pt-12 relative group">
+                        <div key={idx} className="exp-row grid grid-cols-1 lg:grid-cols-12 items-start border-t border-primary/5 pt-12 relative group">
                             
                             {/* Company Name & Date */}
                             <div className="lg:col-span-4 mb-6 lg:mb-0 flex flex-col gap-2">
                                 <h3 className="exp-animate-item opacity-0 text-3xl md:text-4xl font-display font-bold text-primary tracking-tighter">
                                     {job.company}
                                 </h3>
-                                <span className="exp-animate-item opacity-0 text-sm font-medium text-brand tracking-widest uppercase mt-2">
+                                <span className="exp-animate-item opacity-0 text-sm font-medium text-accent tracking-widest uppercase mt-2">
                                     {job.date}
                                 </span>
                             </div>

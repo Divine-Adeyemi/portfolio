@@ -3,14 +3,14 @@ import { FadeUp } from "../components/animations/FadeUp";
 
 // Spinning star icon
 const Star = () => (
-    <span className="inline-block animate-[spin_4s_linear_infinite] text-brand text-xl font-bold">
+    <span className="inline-block animate-[spin_4s_linear_infinite] text-accent text-xl font-bold">
         *
     </span>
 );
 
 export const AboutSection = () => {
     return (
-        <section id="about-me" className="relative py-24 md:py-32 z-10">
+        <section id="about-me" className="relative py-16 md:py-32 z-10">
             <div className="max-w-7xl mx-auto px-8 w-full">
                 
                 {/* Main philosophy statement */}
@@ -35,22 +35,22 @@ export const AboutSection = () => {
                 </div>
 
                 {/* Bio content */}
-                <div className="grid grid-cols-1 lg:grid-cols-12 border-t border-white/10 pt-12">
+                <div className="grid grid-cols-1 lg:grid-cols-12 border-t border-primary/10 pt-12">
                     
                     {/* Name and description in two columns */}
                     <div className="lg:col-span-12 grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-10">
                         
                         {/* Left: Name  */}
-                        <div className="flex flex-col items-start gap-5">
+                        <div className="flex flex-col items-start gap-5 md:pt-11">
                             <FadeUp delay={0.3}>
                                 <h4 className="text-5xl md:text-6xl font-display font-bold text-primary tracking-tighter leading-none">
-                                    Hi, I'm <span className="text-brand">Divine.</span>
+                                    Hi, I'm <span className="text-accent">Divine.</span>
                                 </h4>
                             </FadeUp>
                         </div>
 
                         {/* Right: Bio */}
-                        <div className="flex flex-col items-start gap-8">
+                        <div className="flex flex-col items-start gap-4">
                             <Star />
                             <FadeUp delay={0.4}>
                                 <div className="flex flex-col gap-6">

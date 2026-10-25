@@ -17,7 +17,7 @@ export const StylishSpinner = ({ className = "" }) => {
                     stroke="currentColor" 
                     strokeWidth="1.5" 
                     strokeLinecap="round"
-                    className="text-brand" 
+                    className="text-accent" 
                 />
                 {/* Diagonal lines with fade effect */}
                 <path 
@@ -25,7 +25,7 @@ export const StylishSpinner = ({ className = "" }) => {
                     stroke="currentColor" 
                     strokeWidth="1.5" 
                     strokeLinecap="round" 
-                    className="text-brand opacity-30" 
+                    className="text-accent opacity-30" 
                 />
             </svg>
         </div>

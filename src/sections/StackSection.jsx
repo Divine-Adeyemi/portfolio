@@ -75,19 +75,19 @@ export const StackSection = () => {
         <section 
             ref={sectionRef} 
             id="stack" 
-            className="relative py-24 md:py-32 z-10 overflow-hidden"
+            className="relative py-16 md:py-32 z-10 overflow-hidden"
         >
             <div className="max-w-7xl mx-auto px-8">
                 
                 {/* Header with spinner and title */}
-                <div className="stack-main-header opacity-0 flex items-center gap-6 mb-16 lg:mb-24">
-                    <StylishSpinner className="text-brand w-8 h-8 flex-shrink-0" />
-                    <h2 className="text-2xl md:text-3xl tracking-[0.4em] text-secondary uppercase font-medium mt-1">
+                <div className="stack-main-header opacity-0 flex items-center gap-6 mb-10 lg:mb-24">
+                    <StylishSpinner className="text-accent w-8 h-8 flex-shrink-0" />
+                    <h2 className="text-xl md:text-3xl tracking-[0.2em] md:tracking-[0.4em] text-secondary uppercase font-medium mt-1">
                         My Stack
                     </h2>
                 </div>
 
-                <div className="flex flex-col gap-16 md:gap-24">
+                <div className="flex flex-col gap-12 md:gap-24">
                     {STACK.map((group, groupIdx) => (
                         <div key={groupIdx} className="stack-row grid grid-cols-1 lg:grid-cols-12 items-start gap-8 lg:gap-0">
                             
@@ -99,16 +99,16 @@ export const StackSection = () => {
                             </div>
 
                             {/* Tech items with icons */}
-                            <div className="lg:col-span-9 flex flex-wrap gap-4 md:gap-6">
+                            <div className="lg:col-span-9 flex flex-wrap gap-2.5 md:gap-6">
                                 {group.items.map((item) => (
                                     <div 
                                         key={item.name} 
-                                        className="stack-animate-item opacity-0 flex items-center gap-4 bg-white/[0.03] border border-white/5 px-6 py-3 rounded-xl hover:bg-brand/10 hover:border-brand/30 transition-all duration-300 group cursor-default origin-center"
+                                        className="stack-animate-item opacity-0 flex items-center gap-3 md:gap-4 bg-primary/[0.03] border border-primary/5 px-4 py-2 md:px-6 md:py-3 rounded-xl hover:bg-brand/10 hover:border-brand/30 transition-all duration-300 group cursor-default origin-center"
                                     >
                                         <img 
                                             src={item.icon} 
                                             alt={item.name} 
-                                            className="w-6 h-6 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                                            className={`w-6 h-6 object-contain can-hover:grayscale group-hover:grayscale-0 transition-all duration-500 ${item.invertOnDark ? "invert light:invert-0" : ""}`}
                                             onError={(e) => { 
                                                 e.target.src = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"; 
                                             }} 

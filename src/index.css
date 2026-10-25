@@ -3,19 +3,59 @@
 @import url('https://api.fontshare.com/v2/css?f[]=clash-display@700,600,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-@theme {
+@custom-variant can-hover (@media (hover: hover));
+@custom-variant touch (@media (hover: none));
+@custom-variant light (&:where([data-theme="light"], [data-theme="light"] *));
+
+/* Theme tokens: dark by default, overridden for light mode */
+:root {
+  --void: #050505;
+  --primary: #e2e2e2;
+  --secondary: #a1a1aa;
+  --tertiary: #71717a;
+  --accent: #22c55e;
+  --ring: rgba(255, 255, 255, 0.2);
+  --dot: rgba(255, 255, 255, 0.16);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --void: #f6f5f1;
+  --primary: #111111;
+  --secondary: #52525b;
+  --tertiary: #71717a;
+  --accent: #15803d;
+  --ring: rgba(0, 0, 0, 0.25);
+  --dot: rgba(0, 0, 0, 0.2);
+  color-scheme: light;
+}
+
+@theme inline {
   --font-display: "Clash Display", sans-serif;
   --font-body: "Inter", sans-serif;
-  
-  --color-void: #050505;
+
   --color-brand: #22c55e;
+  --color-void: var(--void);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-tertiary: var(--tertiary);
+  --color-accent: var(--accent);
 }
 
 :root {
   background-color: var(--color-void);
-  color: white;
+  color: var(--color-primary);
   font-family: var(--font-body);
 }
+
+/* Circular theme reveal: the new theme is clipped open from the toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) { z-index: 1; }
+::view-transition-new(root) { z-index: 2; }
 
 ::-webkit-scrollbar {
   display: none;
@@ -35,22 +75,4 @@ body {
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
-}
-
-@theme {
-  --font-display: "Clash Display", sans-serif;
-  --font-body: "Inter", sans-serif;
-  
-  --color-void: #050505;
-  --color-brand: #22c55e;
-  
-  --color-primary: #e2e2e2;
-  --color-secondary: #a1a1aa;
-  --color-tertiary: #52525b;
-}
-
-:root {
-  background-color: var(--color-void);
-  color: var(--color-primary);
-  font-family: var(--font-body);
 }

@@ -7,13 +7,13 @@ export const ProjectsSection = () => {
     const isSomethingHoveredGlobal = hoveredIndex !== null;
 
     return (
-        <section id="projects" className="relative py-24 md:py-32 min-h-screen z-10">
+        <section id="projects" className="relative py-16 md:py-32 min-h-svh z-10">
             <div className="max-w-7xl mx-auto px-8 w-full">
                 
                 {/* Header with spinner and title */}
-                <div className="flex items-center gap-6 mb-16 lg:mb-24">
-                    <StylishSpinner className="text-brand w-8 h-8 flex-shrink-0" />
-                    <h2 className="text-2xl md:text-3xl tracking-[0.4em] text-secondary uppercase font-medium mt-1">
+                <div className="flex items-center gap-6 mb-10 lg:mb-24">
+                    <StylishSpinner className="text-accent w-8 h-8 flex-shrink-0" />
+                    <h2 className="text-xl md:text-3xl tracking-[0.2em] md:tracking-[0.4em] text-secondary uppercase font-medium mt-1">
                         Selected Projects
                     </h2>
                 </div>
@@ -33,17 +33,17 @@ export const ProjectsSection = () => {
                                     href={project.link}
                                     target="_blank"
                                     rel="noreferrer"
-                                    onMouseEnter={() => setHoveredIndex(index)}
-                                    onMouseLeave={() => setHoveredIndex(null)}
-                                    className={`group py-10 border-b border-white/5 transition-all duration-700 ${
+                                    onPointerEnter={(e) => e.pointerType === "mouse" && setHoveredIndex(index)}
+                                    onPointerLeave={(e) => e.pointerType === "mouse" && setHoveredIndex(null)}
+                                    className={`group py-10 border-b border-primary/5 transition-all duration-700 ${
                                         isMuted ? "opacity-30 grayscale blur-[2px]" : "opacity-100 grayscale-0 blur-0"
                                     }`}
                                     style={{ willChange: "opacity, filter" }}
                                 >
-                                    <div className="flex items-baseline gap-8">
+                                    <div className="flex items-baseline gap-3 md:gap-8">
                                         {/* Project number */}
-                                        <span className={`text-xl md:text-3xl font-bold transition-colors duration-500 ${
-                                                isHovered ? "text-gray-400" : "text-gray-600"
+                                        <span className={`w-10 md:w-14 shrink-0 tabular-nums text-xl md:text-3xl font-bold transition-colors duration-500 ${
+                                                isHovered ? "text-secondary" : "text-tertiary"
                                         }`}>
                                             {project.id}
                                         </span>
@@ -53,13 +53,13 @@ export const ProjectsSection = () => {
                                             
                                             {/* Title and icon together */}
                                             <div className="flex items-center gap-3 mb-4 inline-flex">
-                                                <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white transition-colors duration-[400ms] group-hover:text-brand">
+                                                <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-primary transition-colors duration-[400ms] group-hover:text-accent">
                                                     {project.title}
                                                 </h3>
                                                 
                                                 {/* External link icon appears on hover */}
                                                 <svg 
-                                                    className="w-8 h-8 md:w-10 md:h-10 text-white transform opacity-0 scale-75 translate-y-3 transition-all duration-[500ms] ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0" 
+                                                    className="w-8 h-8 md:w-10 md:h-10 text-primary transform opacity-0 scale-75 translate-y-3 touch:opacity-100 touch:scale-100 touch:translate-y-0 transition-all duration-[500ms] ease-out group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0" 
                                                     fill="none" 
                                                     viewBox="0 0 24 24" 
                                                     stroke="currentColor" 
@@ -70,14 +70,22 @@ export const ProjectsSection = () => {
                                             </div>
 
                                             {/* Tech stack tags */}
-                                            <div className="flex flex-wrap gap-4 text-xs tracking-widest uppercase text-gray-500">
+                                            <div className="flex flex-wrap gap-x-3 gap-y-2 text-xs tracking-widest uppercase text-secondary">
                                                 {project.stack.map((t, i) => (
-                                                    <span key={i} className="flex items-center gap-2">
+                                                    <span key={i} className="flex items-center gap-3">
                                                         {t}
-                                                        {i < project.stack.length - 1 && <span className="w-1 h-1 rounded-full bg-gray-700 block" />}
+                                                        {i < project.stack.length - 1 && <span className="w-1 h-1 rounded-full bg-tertiary hidden sm:block" />}
                                                     </span>
                                                 ))}
                                             </div>
+
+                                            {/* Touch screens can't hover, so the preview sits inline on small screens */}
+                                            <img
+                                                src={project.image}
+                                                alt={`${project.title} preview`}
+                                                loading="lazy"
+                                                className="lg:hidden mt-5 w-full aspect-[16/10] object-cover object-top rounded-lg border border-primary/10"
+                                            />
 
                                         </div>
                                     </div>
@@ -88,7 +96,7 @@ export const ProjectsSection = () => {
 
                     {/* Right: Image preview window */}
                     <div className="hidden lg:block absolute right-0 top-0 w-[45%] h-full pointer-events-none z-10">
-                        <div className={`sticky top-32 w-full aspect-[4/3] overflow-hidden rounded-xl bg-white/[0.02] border border-white/5 transition-opacity duration-500 ${isSomethingHoveredGlobal ? "opacity-100" : "opacity-0"}`}>
+                        <div className={`sticky top-32 w-full aspect-[4/3] overflow-hidden rounded-xl bg-primary/[0.02] border border-primary/5 transition-opacity duration-500 ${isSomethingHoveredGlobal ? "opacity-100" : "opacity-0"}`}>
                             
                             {SELECTED_PROJECTS.map((project, index) => (
                                 <img

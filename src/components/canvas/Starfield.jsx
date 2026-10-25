@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Stars } from "@react-three/drei";
+import { useThemeTransitioning } from "../../hooks/useTheme";
 
 // Rotating stars animation component
 const RotatingStars = () => {
@@ -22,7 +23,7 @@ const RotatingStars = () => {
         radius={50} 
         depth={100} 
         count={500} 
-        factor={4} 
+        factor={5} 
         saturation={1}
         fade 
         speed={0.5} 
@@ -31,14 +32,20 @@ const RotatingStars = () => {
   );
 };
 
-// Main starfield background component
+// Main starfield background. In light mode the same stars are drawn black via a CSS filter
+const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
 export const StarfieldBackground = () => {
+  const busy = useThemeTransitioning();
+
   return (
     // Fixed background that doesn't block clicks
-    <div className="fixed inset-0 z-0 pointer-events-none bg-black">
-      <Canvas 
+    <div className="fixed inset-0 z-0 pointer-events-none bg-void">
+      <Canvas
+        className="light:[filter:brightness(0)]"
+        frameloop={busy ? "never" : "always"}
         camera={{ position: [0, 0, 1] }}
-        dpr={[1, 2]}
+        dpr={[1, isTouch ? 1.25 : 2]}
       >
         <RotatingStars />
       </Canvas>

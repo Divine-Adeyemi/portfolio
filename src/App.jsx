@@ -25,12 +25,12 @@ export default function App() {
 
  
 return (
-  <main className="bg-void text-white">
+  <main className="bg-void text-primary">
     {!isLoaded && <IntroLoader onComplete={() => setIsLoaded(true)} />}
 
     {isLoaded && (
       <>
-        <CustomCursor />
+        {!window.matchMedia("(pointer: coarse)").matches && <CustomCursor />}
         <NavigationMenu />
         <ScrollProgress /> 
         <StarfieldBackground />
